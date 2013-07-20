@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	tell application "Finder"		set screen_bounds to bounds of window of desktop		set screen_width to item 3 of screen_bounds		set screen_height to item 4 of screen_bounds		set menu_bar_height to 22		set viewable_height to (screen_height - menu_bar_height)	end tell		tell application "System Events"		set frontmostApplication to name of the first process whose frontmost is true		tell process frontmostApplication to get first window		set this_window to result		set the position of this_window to {(screen_width / 2), menu_bar_height}		set the size of this_window to {(screen_width / 2), viewable_height}	end tell	end run</string>
+					<string>on run {}	tell application "Finder"		set menuBarHeight to 22		set screenBounds to bounds of window of desktop		set screenWidth to item 3 of screenBounds		set screenHeight to item 4 of screenBounds	end tell		tell application "System Events"		set frontProcess to get the name of the first process whose frontmost is true	end tell		tell application frontProcess		set currentWindow to get the first window		set the bounds of currentWindow to {(screenWidth / 2), menuBarHeight, screenWidth, screenHeight}	end tell	end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>

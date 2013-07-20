@@ -51,7 +51,7 @@
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	tell application "Finder"		set screen_bounds to bounds of window of desktop		set screen_width to item 3 of screen_bounds		set screen_height to item 4 of screen_bounds		set menu_bar_height to 22		set viewable_height to (screen_height - menu_bar_height)	end tell		tell application "System Events"		set frontmostApplication to name of the first process whose frontmost is true		tell process frontmostApplication to get first window		set this_window to result		set fifth_width to (screen_width / 5)		set fifth_height to (viewable_height / 5)		set the position of this_window to {fifth_width, fifth_height}		set the size of this_window to {(fifth_width * 3), (fifth_height * 3)}	end tellend run</string>
+					<string>on run {}	tell application "Finder"		set menuBarHeight to 22		set screenBounds to bounds of window of desktop		set screenWidth to item 3 of screenBounds		set screenHeight to item 4 of screenBounds		set viewableHeight to (screenHeight - menuBarHeight)	end tell	tell application "System Events"		set frontProcess to get the name of the first process whose frontmost is true	end tell		tell application frontProcess		set currentWindow to get the front window		set fifthWidth to (screenWidth / 5) as integer		set fifthHeight to (viewableHeight / 5) as integer		set topRight to (screenWidth - fifthWidth) as integer		set bottomRight to (screenHeight - fifthHeight) as integer		-- display dialog ((fifthWidth as string) &amp; ", " &amp; fifthHeight &amp; ", " &amp; topRight &amp; ", " &amp; bottomRight) as string		log properties of currentWindow		set the bounds of currentWindow to {fifthWidth, fifthHeight, topRight, bottomRight}	end tell	end run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -102,12 +102,10 @@ end run</string>
 						<string>0</string>
 					</dict>
 				</dict>
-				<key>conversionLabel</key>
-				<integer>0</integer>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>250.500000:333.000000</string>
+				<string>250.500000:513.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/English.lproj/main.nib</string>
 			</dict>
